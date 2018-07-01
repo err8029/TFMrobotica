@@ -22,6 +22,8 @@ hfig = createfig();
 %---------------wait for key press----------------------
 set(hfig,'KeyPressFcn',@move);
 
+%odom test
+[postion,orientation]=odom_obtention()
 
 
 
