@@ -20,7 +20,9 @@ vel2_pub = rospublisher('/robot1/mobile_base/commands/velocity');
 
 
 %---------------create the figure------------------------
-createfig();
+hfig = createfig();
 
+%---------------wait for key press----------------------
+set(hfig,'KeyPressFcn',@move);
 
 

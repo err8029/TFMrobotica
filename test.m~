@@ -20,12 +20,8 @@ vel2_pub = rospublisher('/robot1/mobile_base/commands/velocity');
 
 
 %---------------create the figure------------------------
-createfig();
-global img1_handle
-global img2_handle
+hfig = createfig();
 
-%image robot 2
-display_image()
-%image robot1
-display_image(cam2_msg,img1_handle)
+%---------------wait for key press----------------------
 
+if hfig.CurrentCharacter

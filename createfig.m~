@@ -1,4 +1,5 @@
 function createfig()
+    global h
 	hfig = figure;
 	set(hfig,'numbertitle','off');               % erase figure number
 	set(hfig,'name','Multi robot controller');
@@ -8,121 +9,66 @@ function createfig()
 	set(hfig,'tag','MOSTRARDADES');              % identify figure
     set(hfig,'Units','Normalized','Position',[0.1,0.1,0.75,0.75]);
     
-    %create axes for images
+    %------------------create texts and rectangles------------------------
+    %rectangles for robot 1
+    draw_rectangles(0);
+    %rectangles for robot 2
+    draw_rectangles(0.5);
+    %text for robot1
+    uicontrol('Style', 'text','String','Robot 1',...
+    'Units','Normalized','Position', [0.05 0.9 0.4 0.07],...
+    'BackgroundColor',[0.5 0.5 0.5],'FontSize',20,'ForegroundColor',[1 1 1]);  
+    %text for robot2
+    uicontrol('Style', 'text','String','Robot 2',...
+    'Units','Normalized','Position', [0.55 0.9 0.4 0.07],...
+    'BackgroundColor',[0.5 0.5 0.5],'FontSize',20,'ForegroundColor',[1 1 1]); 
+
+    %-------------------create axes for images----------------------------
     global img1_handle
     global img2_handle
-    img1_handle=axes('Units','Normalized','Position',[0.05 0.55 0.4 0.4]);
-    img2_handle=axes('Units','Normalized','Position',[0.55 0.55 0.4 0.4]);
+    img1_handle=axes('Units','Normalized','Position',[0.05 0.45 0.4 0.4]);
+    img2_handle=axes('Units','Normalized','Position',[0.55 0.45 0.4 0.4]);
     [up,down,left,right]=read_arrows();
     
-    %arrow buttons robots
+    %--------------------arrow buttons robots-----------------------------
     arrow_draw(up,down,left,right)
     
+    %-------------------display initial images----------------------------
+    display_image()
 end
 function close(obj,event)
 closereq;
 rosshutdown;
 end
 
-function move(obj,event)
-    %Obtain the tag for the pressed button
-    ID=obj.Tag;
-    %goba vars for camera
-    global img1_handle
-    global img2_handle
-    global img2_sub
-    global img_sub
-    %check which button has been pressed
-    if strcmp('up',ID)==true
-        for c=1:1:100
-            send_velocity(1,0)
-        end
-        cam1_msg=img2_sub.LatestMessage;
-        display_image(cam1_msg,img1_handle)
-    end
-    if strcmp('down',ID)==true
-        for c=1:1:100
-            send_velocity(-1,0)
-        end
-        cam1_msg=img2_sub.LatestMessage;
-        display_image(cam1_msg,img1_handle)
-    end
-    %move left robot 1
-    if strcmp('left',ID)==true
-        for c=1:1:100
-            send_velocity(0,1)
-        end
-        cam1_msg=img2_sub.LatestMessage;
-        display_image(cam1_msg,img1_handle)
-    end
-    %move right robot 1
-    if strcmp('right',ID)==true
-        for c=1:1:100
-            send_velocity(0,-1)
-        end
-        cam1_msg=img2_sub.LatestMessage;
-        display_image(cam1_msg,img1_handle)
-    end
-    if strcmp('up2',ID)==true
-        for c=1:1:100
-            send_velocity2(1,0)
-        end
-        cam2_msg=img_sub.LatestMessage;
-        display_image(cam2_msg,img2_handle)
-    end
-    if strcmp('down2',ID)==true
-        for c=1:1:100
-            send_velocity2(-1,0)
-        end
-        cam2_msg=img_sub.LatestMessage;
-        display_image(cam2_msg,img2_handle)
-    end
-    if strcmp('left2',ID)==true
-        for c=1:1:100
-            send_velocity2(0,1)
-        end
-        cam2_msg=img_sub.LatestMessage;
-        display_image(cam2_msg,img2_handle)
-    end
-end
-function move_right2(obj,event)
-    global img2_handle
-    global img_sub
-    for c=1:1:100
-        send_velocity2(0,-1)
-    end
-    cam2_msg=img_sub.LatestMessage;
-    display_image(cam2_msg,img2_handle)
-end
-
 function arrow_draw(up,down,left,right)
     %arrows for robot1
     uicontrol('Style', 'pushbutton','cdata',up,...
-    'Units','Normalized','Position', [0.225 0.38 0.05 0.1],...
+    'Units','Normalized','Position', [0.225 0.3 0.05 0.1],...
     'Callback', @move,'Tag','up');  
     uicontrol('Style', 'pushbutton','cdata',down,...
-    'Units','Normalized','Position', [0.225 0.12 0.05 0.1],...
+    'Units','Normalized','Position', [0.225 0.05 0.05 0.1],...
     'Callback', @move,'Tag','down');
     uicontrol('Style', 'pushbutton','cdata',left,...
-    'Units','Normalized','Position', [0.15 0.25 0.05 0.1],...
+    'Units','Normalized','Position', [0.15 0.18 0.05 0.1],...
     'Callback', @move,'Tag','left');  
     uicontrol('Style', 'pushbutton','cdata',right,...
-    'Units','Normalized','Position', [0.3 0.25 0.05 0.1],...
+    'Units','Normalized','Position', [0.3 0.18 0.05 0.1],...
     'Callback', @move,'Tag','right');
 
     %arrows for robot2
     uicontrol('Style', 'pushbutton','cdata',up,...
-    'Units','Normalized','Position', [0.725 0.38 0.05 0.1],...
-    'Callback', @move_up2,'Tag','up2');  
+    'Units','Normalized','Position', [0.725 0.3 0.05 0.1],...
+    'Callback', @move,'Tag','up2');  
     uicontrol('Style', 'pushbutton','cdata',down,...
-    'Units','Normalized','Position', [0.725 0.12 0.05 0.1],...
-    'Callback', @move_down2,'Tag','down2');
+    'Units','Normalized','Position', [0.725 0.05 0.05 0.1],...
+    'Callback', @move,'Tag','down2');
     uicontrol('Style', 'pushbutton','cdata',left,...
-    'Units','Normalized','Position', [0.65 0.25 0.05 0.1],...
-    'Callback', @move_left2,'Tag','left2');  
+    'Units','Normalized','Position', [0.65 0.18 0.05 0.1],...
+    'Callback', @move,'Tag','left2');  
     uicontrol('Style', 'pushbutton','cdata',right,...
-    'Units','Normalized','Position', [0.8 0.25 0.05 0.1],...
-    'Callback', @move_right2,'Tag','right2');
+    'Units','Normalized','Position', [0.8 0.18 0.05 0.1],...
+    'Callback', @move,'Tag','right2');
 end
 function [up,down,left,right]=read_arrows()
     up=imread('img/up.jpg');
