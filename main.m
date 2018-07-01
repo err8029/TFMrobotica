@@ -7,10 +7,6 @@ rosinit;
 
 %-------------------subscribers---------------------------
 subscribe_cams();
-global img_sub
-global img2_sub
-cam1_msg=img_sub.LatestMessage;
-cam2_msg=img2_sub.LatestMessage;
 
 %--------------------pubishers----------------------------
 global vel_pub
@@ -23,5 +19,6 @@ vel2_pub = rospublisher('/robot1/mobile_base/commands/velocity');
 hfig = createfig();
 
 %---------------wait for key press----------------------
+set(hfig,'KeyPressFcn',@move);
 
-if hfig.CurrentCharacter
+
