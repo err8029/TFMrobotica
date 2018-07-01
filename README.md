@@ -12,4 +12,4 @@ Programa con matlab para poder teleoperar dos turtlebots (con GUI o teclado) en 
 
 **Trabajo inmediato**
 
-Añadir información de odometria y probarlo en la realidad
+Añadir información de odometria en la GUI, sliders para ajustar la sensitividad de cada pulsación (numero de ordenes de velocidad por pulsacion de boton o tecla) y probarlo en la realidad
