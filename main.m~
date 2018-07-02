@@ -20,8 +20,7 @@ vel2_pub = rospublisher('/robot2/mobile_base/commands/velocity');
 
 
 %---------------create the figure------------------------
-global hfig
-createfig();
+hfig = createfig();
 
 %---------------init velocity-------------------------
 global vel1
@@ -36,9 +35,14 @@ w2=0.5;
 speed_update();
 
 %---------------wait for key press----------------------
-%recursivity, one robot calls the other every time a movement is captured and so on 
-%to change the key press function
-set(hfig,'KeyPressFcn',@move);
+%two keys at same time per robot so 4 key detection in parallel (4 workers)
+global move_done
+m
+if strcmp(hfig.KeyPressFcn,'@move')
+    set(hfig,'KeyPressFcn',@move2);
+else
+    set(hfig,'KeyPressFcn',@move);
+end
 
 
 

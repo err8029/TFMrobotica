@@ -1,4 +1,5 @@
-function hfig = createfig()
+function createfig()
+    global hfig
 	hfig = figure;
 	set(hfig,'numbertitle','off');               % erase figure number
 	set(hfig,'name','Multi robot controller');
@@ -7,7 +8,6 @@ function hfig = createfig()
 	set(hfig,'CloseRequestFcn',@close)          % close request function (close window)
 	set(hfig,'tag','MOSTRARDADES');              % identify figure
     set(hfig,'Units','Normalized','Position',[0.1,0.1,0.75,0.75]);
-    
     %------------------------------menu-----------------------------------
     hmenu = uimenu('Label','&Options','Tag','M');       
 		uimenu(hmenu,'Label','&exit','Callback',@close,'separator','on','Accelerator','E');
@@ -81,6 +81,7 @@ function hfig = createfig()
     
     %-------------------display initial images----------------------------
     display_image()
+    display_image2()
 end
 function close(obj,event)
 closereq;
