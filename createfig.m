@@ -31,7 +31,31 @@ function hfig = createfig()
     
     %--------------------arrow buttons robots-----------------------------
     arrow_draw(up,down,left,right)
+    %----------------create rectangles for odom---------------------------
+    global position1_text
+    global position2_text
+    global orientation1_text
+    global orientation2_text
     
+    [position1,orientation1] = odom_obtention();    
+    text=sprintf('%s\n%s\n%s\n%s','Position',['X: ' num2str(position1(1)) ' m'],['Y: ' num2str(position1(2)) ' m'],['Z: ' num2str(position1(3)) ' m']);
+    position1_text=uicontrol('Style', 'text','String',text,'Tag','Positon1',...
+    'Units','Normalized','Position', [0.29 0.03 0.15 0.1],'HorizontalAlignment','Left',...
+    'BackgroundColor',[0.5 0.5 0.5],'FontSize',13,'ForegroundColor',[1 1 1]); 
+    text=sprintf('%s\n%s\n%s\n%s','Orientation',['X: ' num2str(orientation1(1)) ' deg'],['Y: ' num2str(orientation1(2)) ' deg'],['Z: ' num2str(orientation1(3)) ' deg']);
+    orientation1_text=uicontrol('Style', 'text','String',text,'Tag','Orientation1',...
+    'Units','Normalized','Position', [0.06 0.03 0.15 0.1],'HorizontalAlignment','Left',...
+    'BackgroundColor',[0.5 0.5 0.5],'FontSize',13,'ForegroundColor',[1 1 1]); 
+
+    [position2,orientation2] = odom_obtention2();
+    text2=sprintf('%s\n%s\n%s\n%s','Position',['X: ' num2str(position2(1)) ' m'],['Y: ' num2str(position2(2)) ' m'],['Z: ' num2str(position2(3)) ' m']);
+    position2_text=uicontrol('Style', 'text','String',text2,...
+    'Units','Normalized','Position', [0.79 0.03 0.15 0.1],'HorizontalAlignment','Left',...
+    'BackgroundColor',[0.5 0.5 0.5],'FontSize',13,'ForegroundColor',[1 1 1]); 
+    text2=sprintf('%s\n%s\n%s\n%s','Orientation',['X: ' num2str(orientation2(1)) ' deg'],['Y: ' num2str(orientation2(2)) ' deg'],['Z: ' num2str(orientation2(3)) ' deg']);
+    orientation2_text=uicontrol('Style', 'text','String',text2,...
+    'Units','Normalized','Position', [0.56 0.03 0.15 0.1],'HorizontalAlignment','Left',...
+    'BackgroundColor',[0.5 0.5 0.5],'FontSize',13,'ForegroundColor',[1 1 1]); 
     %-------------------display initial images----------------------------
     display_image()
 end

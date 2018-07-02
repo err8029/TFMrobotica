@@ -9,8 +9,8 @@ function display_image()
     cam2_msg=img2_sub.LatestMessage;
     %change to the axes of robot 1 and show the image
     axes(img1_handle)
-    imshow(img_view(cam2_msg))
+    imshow(img_view(cam1_msg))
     %change to the axes of robot 2 and show the image
     axes(img2_handle)
-    imshow(img_view(cam1_msg))
+    imshow(img_view(cam2_msg))
 end

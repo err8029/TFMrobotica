@@ -12,8 +12,8 @@ subscribe_odom();
 %--------------------pubishers----------------------------
 global vel_pub
 global vel2_pub
-vel_pub = rospublisher('/robot2/mobile_base/commands/velocity');
-vel2_pub = rospublisher('/robot1/mobile_base/commands/velocity');
+vel_pub = rospublisher('/robot1/mobile_base/commands/velocity');
+vel2_pub = rospublisher('/robot2/mobile_base/commands/velocity');
 
 
 %---------------create the figure------------------------

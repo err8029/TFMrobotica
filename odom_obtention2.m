@@ -13,8 +13,5 @@ function [position2,orientation2] = odom_obtention2()
     %put info into arrays
     position2 =[x,y,z];
     orientation2 =  [yaw, pitch, roll];
-    %disp results
-    disp(['position robot 1: ' num2str(position2)])
-    disp(['orientation robot 2: ' orientation2])
 end
 
