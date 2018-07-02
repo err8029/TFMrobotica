@@ -31,10 +31,14 @@ vel1=0.5;
 vel2=0.5;
 w1=0.5;
 w2=0.5;
+%update speeds in GUI
+speed_update();
 
 %---------------wait for key press----------------------
+%waiting for robot 1
 set(hfig,'KeyPressFcn',@move);
-
+%waiting for robot 2
+set(hfig,'KeyPressFcn',@move);
 
 
 

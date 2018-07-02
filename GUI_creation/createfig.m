@@ -61,6 +61,24 @@ function hfig = createfig()
     orientation2_text=uicontrol('Style', 'text','String',text2,...
     'Units','Normalized','Position', [0.56 0.03 0.15 0.1],'HorizontalAlignment','Left',...
     'BackgroundColor',[0.5 0.5 0.5],'FontSize',13,'ForegroundColor',[1 1 1]); 
+    %----------------create rectangles for speeds-------------------------
+    global vel1_rect_main
+    global vel2_rect_main
+    global vel1
+    global w1
+    global vel2
+    global w2
+    
+    text=sprintf('%s\n%s\n%s','Velocity',['Linear: ' num2str(vel1) ' m/s'],['Angular: ' num2str(w1) ' rad/s']);
+    vel1_rect_main=uicontrol('Style', 'text','String',text,...
+    'Units','Normalized','Position', [0.06 0.905 0.15 0.06],'HorizontalAlignment','Left',...
+    'BackgroundColor',[0.5 0.5 0.5],'FontSize',10,'ForegroundColor',[1 1 1]); 
+
+    text=sprintf('%s\n%s\n%s','Velocity',['Linear: ' num2str(vel2) ' m/s'],['Angular: ' num2str(w2) ' rad/s']);
+    vel2_rect_main=uicontrol('Style', 'text','String',text,...
+    'Units','Normalized','Position', [0.56 0.905 0.15 0.06],'HorizontalAlignment','Left',...
+    'BackgroundColor',[0.5 0.5 0.5],'FontSize',10,'ForegroundColor',[1 1 1]); 
+    
     %-------------------display initial images----------------------------
     display_image()
 end
