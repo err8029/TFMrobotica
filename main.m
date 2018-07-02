@@ -35,9 +35,12 @@ w2=0.5;
 speed_update();
 
 %---------------wait for key press----------------------
+%two keys at same time per robot
 %waiting for robot 1
 set(hfig,'KeyPressFcn',@move);
+set(hfig,'KeyPressFcn',@move);
 %waiting for robot 2
+set(hfig,'KeyPressFcn',@move);
 set(hfig,'KeyPressFcn',@move);
 
 
