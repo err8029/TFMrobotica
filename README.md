@@ -16,4 +16,4 @@ Panel de control de velocidades
 
 **Trabajo inmediato**
 
-Añadir información de odometria en la GUI, sliders para ajustar la sensitividad de cada pulsación (numero de ordenes de velocidad por pulsacion de boton o tecla) y probarlo en la realidad
+Igual añadir informacion de velocidad en la GUI principal y probarlo en la realidad
