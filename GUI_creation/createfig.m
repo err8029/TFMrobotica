@@ -8,6 +8,11 @@ function hfig = createfig()
 	set(hfig,'tag','MOSTRARDADES');              % identify figure
     set(hfig,'Units','Normalized','Position',[0.1,0.1,0.75,0.75]);
     
+    %------------------------------menu-----------------------------------
+    hmenu = uimenu('Label','&Options','Tag','M');       
+		uimenu(hmenu,'Label','&exit','Callback',@close,'separator','on','Accelerator','E');
+        uimenu(hmenu,'Label','&control panel','Callback',@create_control,'separator','on','Accelerator','C');
+    
     %------------------create texts and rectangles------------------------
     %rectangles for robot 1
     draw_rectangles(0);

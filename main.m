@@ -5,6 +5,9 @@ close all;
 rosshutdown;
 rosinit;
 
+%--------add paths for functions in other folders---------
+add_paths();
+
 %-------------------subscribers---------------------------
 subscribe_cams();
 subscribe_odom();
@@ -18,6 +21,16 @@ vel2_pub = rospublisher('/robot2/mobile_base/commands/velocity');
 
 %---------------create the figure------------------------
 hfig = createfig();
+
+%---------------init velocity-------------------------
+global vel1
+global vel2
+global w1
+global w2
+vel1=0.5;
+vel2=0.5;
+w1=0.5;
+w2=0.5;
 
 %---------------wait for key press----------------------
 set(hfig,'KeyPressFcn',@move);
