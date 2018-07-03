@@ -40,6 +40,13 @@ speed_update();
 %to change the key press function
 set(hfig,'KeyPressFcn',@move);
 
+%-----------------autonomous nav------------------------
+%change axes to nav ones
+global plan_handle
+axes(plan_handle)
+map=csvread('map/map4.csv');
+plan_GUI(map)
+
 
 
 
