@@ -1,5 +1,7 @@
-function [Optimal_path] = astar(xval,yval,xTarget,yTarget,xStart,yStart,MAP,MAX_X,MAX_Y)
-    global plan_handle;
+function [Optimal_path] = astar(xTarget,yTarget,xStart,yStart,MAP,MAX_X,MAX_Y)
+    %assign current values to the start
+    xval=xStart;
+    yval=yStart;
     %OPEN LIST STRUCTURE
     %--------------------------------------------------------------------------
     %IS ON LIST 1/0 |X val |Y val |Parent X val |Parent Y val |h(n) |g(n)|f(n)|

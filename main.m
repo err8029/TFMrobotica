@@ -44,8 +44,11 @@ set(hfig,'KeyPressFcn',@move);
 %change axes to nav ones
 global plan_handle
 axes(plan_handle)
+%read the csv, plot it and obtain the paths
 map=csvread('map/map4.csv');
-plan_GUI(map)
+[optimal_path,optimal_path2] = plan_GUI(map);
+%execute navigation
+nav(optimal_path,optimal_path2)
 
 
 
