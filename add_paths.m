@@ -12,5 +12,7 @@ addpath('subscribers');
 addpath('GUI_creation');
 %auxiliary functions
 addpath('aux_functions');
+%astar funs
+addpath('astar_fun')
 end
 

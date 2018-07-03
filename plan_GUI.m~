@@ -16,20 +16,25 @@ function plan_GUI(raw_map)
     hold on;
     
     MAP=obstacle_placement(MAP,MAX_X,MAX_Y,raw_map);
-    [MAP,xStart,yStart,xTarget,yTarget]=data_gathering(MAP,rob_);
-    [MAP,xStart2,yStart2,xTarget2,yTarget2]=data_gathering(MAP,rob_num);
+    %gather start and target for robot 1
+    [MAP,xStart,yStart,xTarget,yTarget]=data_gathering(MAP,1);
+    %gather start and target for robot 2
+    [MAP,xStart2,yStart2,xTarget2,yTarget2]=data_gathering(MAP,2);
     
     xval=xStart;
     yval=yStart;
     
     xval2=xStart2;
     yval2=yStart2;
+    
+    %start A* algorithm
+    astart(x_va);
 end
 function [MAP,xStart,yStart,xTarget,yTarget]=data_gathering(MAP,rob_num)
     % BEGIN Interactive Obstacle, Target, Start Location selection
     pause(1);
-    h=msgbox('Select the target for robot');
-    uiwait(h,5);
+    h=msgbox(['Select the target for robot ' num2str(rob_num)]);
+    uiwait(h,3)
     if ishandle(h) == 1
         delete(h);
     end
@@ -45,7 +50,7 @@ function [MAP,xStart,yStart,xTarget,yTarget]=data_gathering(MAP,rob_num)
 
     MAP(xval,yval)=0;%Initialize MAP with location of the target
     plot(xval+.5,yval+.5,'gd');
-    text(xval+1,yval+.5,'Target')
+    text(xval+1,yval+.5,['Target' num2str(rob_num)])
 
     %ask the user for the current position of the robot
     prompt1='enter the start x position';
@@ -60,6 +65,7 @@ function [MAP,xStart,yStart,xTarget,yTarget]=data_gathering(MAP,rob_num)
     xStart=floor(str2double(pos_x));%Starting Position
     yStart=floor(str2double(pos_y));%Starting Position
     plot(xStart+.5,yStart+.5,'bo');
+    text(xStart+1,yStart+.5,['Robot' num2str(rob_num)])
 end
 function MAP = obstacle_placement(MAP,MAX_X,MAX_Y,map)
     %detect obstacles in the CSV and store in the map also checks for

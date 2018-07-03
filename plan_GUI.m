@@ -19,13 +19,23 @@ function plan_GUI(raw_map)
     %gather start and target for robot 1
     [MAP,xStart,yStart,xTarget,yTarget]=data_gathering(MAP,1);
     %gather start and target for robot 2
-    [MAP,xStart2,yStart2,xTarget2,yTarget2]=data_gathering(MAP,2);
-    
+    [MAP2,xStart2,yStart2,xTarget2,yTarget2]=data_gathering(MAP,2);
+            
+    %start A* algorithm
     xval=xStart;
     yval=yStart;
+    optimal_path=astar(xval,yval,xTarget,yTarget,xStart,yStart,MAP,MAX_X,MAX_Y);
+    disp('done')
     
     xval2=xStart2;
     yval2=yStart2;
+    disp('almost')
+    optimal_path2=astar(xval2,yval2,xTarget2,yTarget2,xStart2,yStart2,MAP2,MAX_X,MAX_Y);
+    disp('yeah')
+    
+    %disp paths
+    disp(optimal_path)
+    disp(optimal_path2)
 end
 function [MAP,xStart,yStart,xTarget,yTarget]=data_gathering(MAP,rob_num)
     % BEGIN Interactive Obstacle, Target, Start Location selection
