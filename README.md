@@ -16,4 +16,4 @@ Panel de control de velocidades
 
 **Trabajo inmediato**
 
-Mandar lista de nodos a los robots para que se muevan, metodos para compartir información de sensores y probarlo en la realidad
+Mover los robots con el path (intentar hacer que la lista contenga mas nodos, splines lineales, entonces ejecutar las dos listas de forma recursiva). Además, metodos para compartir información de sensores y probarlo en la realidad
