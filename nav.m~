@@ -3,6 +3,11 @@ function nav(optimal_path,optimal_path2)
 controller=purePursuit_init(optimal_path,1);
 controller2=purePursuit_init(optimal_path2,1);
 
-
+%linear splines
+dist=optimal_path(1
+s=spline(optimal_path(:,2)',optimal_path(:,2)');    
+disp(s)
+plot(s)
+%
 
 end
