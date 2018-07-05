@@ -55,6 +55,7 @@ function createfig()
     global orientation2
     global orientation1_text
     global orientation2_text
+    global stop_bt
     
     odom_obtention();    
     text=sprintf('%s\n%s\n%s\n%s','Position',['X: ' num2str(position1(1)) ' m'],['Y: ' num2str(position1(2)) ' m'],['Z: ' num2str(position1(3)) ' m']);
@@ -98,9 +99,9 @@ function createfig()
     display_image2()
     
     %---------------------stop navigation bt------------------------------
-    uicontrol('Style', 'pushbutton','String','Stop navigation',...
+    stop_bt = uicontrol('Style', 'pushbutton','String','Stop navigation',...
     'Units','Normalized','Position', [0.4 0.1 0.2 0.05],...
-    'Callback', @stop,'Tag','up');  
+    'Callback', @stop,'Tag','stop','Interruptible','Off','UserData',0);  
 end
 function close(obj,event)
 closereq;

@@ -1,8 +1,7 @@
 
 function stop(obj,event)
-global stop_var
-stop_var=true;
-disp('fun works');
+    global stop_bt
+    set(stop_bt,'userdata',1)
 end
 
 
