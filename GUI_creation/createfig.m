@@ -49,10 +49,14 @@ function createfig()
     %----------------create rectangles for odom---------------------------
     global position1_text
     global position2_text
+    global position1
+    global position2
+    global orientation1
+    global orientation2
     global orientation1_text
     global orientation2_text
     
-    [position1,orientation1] = odom_obtention();    
+    odom_obtention();    
     text=sprintf('%s\n%s\n%s\n%s','Position',['X: ' num2str(position1(1)) ' m'],['Y: ' num2str(position1(2)) ' m'],['Z: ' num2str(position1(3)) ' m']);
     position1_text=uicontrol('Style', 'text','String',text,'Tag','Positon1',...
     'Units','Normalized','Position', [0.18 0.02 0.11 0.1],'HorizontalAlignment','Left',...
@@ -62,7 +66,7 @@ function createfig()
     'Units','Normalized','Position', [0.01 0.02 0.11 0.1],'HorizontalAlignment','Left',...
     'BackgroundColor',[0.5 0.5 0.5],'FontSize',13,'ForegroundColor',[1 1 1]); 
 
-    [position2,orientation2] = odom_obtention2();
+    odom_obtention2();
     text2=sprintf('%s\n%s\n%s\n%s','Position',['X: ' num2str(position2(1)) ' m'],['Y: ' num2str(position2(2)) ' m'],['Z: ' num2str(position2(3)) ' m']);
     position2_text=uicontrol('Style', 'text','String',text2,...
     'Units','Normalized','Position', [0.88 0.02 0.11 0.1],'HorizontalAlignment','Left',...
@@ -92,6 +96,11 @@ function createfig()
     %-------------------display initial images----------------------------
     display_image()
     display_image2()
+    
+    %---------------------stop navigation bt------------------------------
+    uicontrol('Style', 'pushbutton','String','Stop navigation',...
+    'Units','Normalized','Position', [0.4 0.1 0.2 0.05],...
+    'Callback', @stop,'Tag','up');  
 end
 function close(obj,event)
 closereq;

@@ -25,6 +25,9 @@ function [optimal_path, optimal_path2] = plan_GUI(raw_map)
     optimal_path=astar(xTarget,yTarget,xStart,yStart,MAP,MAX_X,MAX_Y);
     optimal_path2=astar(xTarget2,yTarget2,xStart2,yStart2,MAP2,MAX_X,MAX_Y);
     
+    %navigation
+    nav(optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xStart,yStart,xStart2,yStart2)
+    
 end
 function [MAP,xStart,yStart,xTarget,yTarget]=data_gathering(MAP,rob_num)
     % BEGIN Interactive Obstacle, Target, Start Location selection
