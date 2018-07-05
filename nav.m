@@ -20,7 +20,7 @@ function nav(optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xStart
     %init the purepursuit controller
     controller=purePursuit_init(optimal_path);
     controller2=purePursuit_init(optimal_path2);
-    controlRate = robotics.Rate(200);
+    controlRate = robotics.Rate(10);
 
     %reached flags for robots
     reached1=false;
@@ -32,6 +32,7 @@ function nav(optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xStart
         %check stop
         pause(0.1);
         if get(stop_bt, 'userdata') % stop condition
+            set(stop_bt, 'userdata',0)
             break;
         end
         %%send new speed comands

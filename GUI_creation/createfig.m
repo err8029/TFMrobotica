@@ -102,10 +102,26 @@ function createfig()
     stop_bt = uicontrol('Style', 'pushbutton','String','Stop navigation',...
     'Units','Normalized','Position', [0.4 0.1 0.2 0.05],...
     'Callback', @stop,'Tag','stop','Interruptible','Off','UserData',0);  
+    %---------------------stop navigation bt------------------------------
+    uicontrol('Style', 'pushbutton','String','Start planning',...
+    'Units','Normalized','Position', [0.4 0.05 0.2 0.05],...
+    'Callback', @start,'Tag','start'); 
 end
 function close(obj,event)
 closereq;
 rosshutdown;
+end
+function start(obj,event)
+    %change axes to nav ones
+     global plan_handle
+     axes(plan_handle)
+     cla(plan_handle)
+     grid on;
+     grid minor;
+     hold on;
+     %read the csv, plot it and obtain the paths and execute navigation
+     map=csvread('map/map4.csv');
+     plan_GUI(map);
 end
 
 function arrow_draw(up,down,left,right)

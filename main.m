@@ -40,13 +40,7 @@ speed_update();
 %to change the key press function
 set(hfig,'KeyPressFcn',@move);
 
-%-----------------autonomous nav------------------------
-%change axes to nav ones
- global plan_handle
- axes(plan_handle)
- %read the csv, plot it and obtain the paths and execute navigation
- map=csvread('map/map4.csv');
- [optimal_path,optimal_path2] = plan_GUI(map);
+
 
 
 

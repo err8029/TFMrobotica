@@ -1,4 +1,5 @@
-function [optimal_path, optimal_path2] = plan_GUI(raw_map)
+function plan_GUI(raw_map)
+    global stop_bt
     dmap=size(raw_map);
 
     %DEFINE THE 2-D MAP ARRAY FROM THE CSV
@@ -20,13 +21,18 @@ function [optimal_path, optimal_path2] = plan_GUI(raw_map)
     [MAP,xStart,yStart,xTarget,yTarget]=data_gathering(MAP,1);
     %gather start and target for robot 2
     [MAP2,xStart2,yStart2,xTarget2,yTarget2]=data_gathering(MAP,2);
-            
-    %A* algorithm   
-    optimal_path=astar(xTarget,yTarget,xStart,yStart,MAP,MAX_X,MAX_Y);
-    optimal_path2=astar(xTarget2,yTarget2,xStart2,yStart2,MAP2,MAX_X,MAX_Y);
     
-    %navigation
-    nav(optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xStart,yStart,xStart2,yStart2)
+    %check stop
+    if get(stop_bt, 'userdata') % stop condition
+        set(stop_bt, 'userdata',0)
+    else
+        %A* algorithm   
+        optimal_path=astar(xTarget,yTarget,xStart,yStart,MAP,MAX_X,MAX_Y);
+        optimal_path2=astar(xTarget2,yTarget2,xStart2,yStart2,MAP2,MAX_X,MAX_Y);
+    
+        %navigation
+        nav(optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xStart,yStart,xStart2,yStart2)
+    end
     
 end
 function [MAP,xStart,yStart,xTarget,yTarget]=data_gathering(MAP,rob_num)
