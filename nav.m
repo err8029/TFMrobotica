@@ -4,6 +4,10 @@ function nav(optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xStart
     global orientation1
     global orientation2
     global stop_bt
+    global vel1
+    global vel2
+    global w1
+    global w2
 
     %init current pos
     odom_obtention();
@@ -18,8 +22,8 @@ function nav(optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xStart
     pose2=[curent_pos_x2 curent_pos_y2 orientation2(1)];
 
     %init the purepursuit controller
-    controller=purePursuit_init(optimal_path);
-    controller2=purePursuit_init(optimal_path2);
+    controller=purePursuit_init(optimal_path,vel1,w1);
+    controller2=purePursuit_init(optimal_path2,vel2,w2);
     controlRate = robotics.Rate(10);
 
     %reached flags for robots
@@ -46,8 +50,8 @@ function nav(optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xStart
             pose=[curent_pos_x+position1(1) curent_pos_y+position1(2) orientation1(1)];
         end
         if reached2==false
-            [v2, w2] = step(controller2,pose2);
-            send_velocity2(v2,w2);
+            [vs2, ws2] = step(controller2,pose2);
+            send_velocity2(vs2,ws2);
             waitfor(controlRate);
             odom_update2();
             display_image2();

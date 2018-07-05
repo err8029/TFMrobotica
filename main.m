@@ -28,8 +28,8 @@ global vel1
 global vel2
 global w1
 global w2
-vel1=0.5;
-vel2=0.5;
+vel1=0.3;
+vel2=0.3;
 w1=0.5;
 w2=0.5;
 %update speeds in GUI

@@ -3,10 +3,12 @@ function nav(optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xStart
     global position2
     global orientation1
     global orientation2
-    global hfig
+    global stop_bt
+    global vel1
+    global vel2
+    global w
+    
 
-    %init stop var
-    stop_var=false;
     %init current pos
     odom_obtention();
     curent_pos_x=position1(1)+xStart;
@@ -20,18 +22,23 @@ function nav(optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xStart
     pose2=[curent_pos_x2 curent_pos_y2 orientation2(1)];
 
     %init the purepursuit controller
-    controller=purePursuit_init(optimal_path);
+    controller=purePursuit_init(optimal_path,vel1);
     controller2=purePursuit_init(optimal_path2);
-    controlRate = robotics.Rate(50);
+    controlRate = robotics.Rate(10);
 
     %reached flags for robots
     reached1=false;
     reached2=false;
-    set(hfig,'KeyPressFcn',@s);
     
     %NAVIGATION STARTS
     %init nav
     while reached1==false || reached2==false
+        %check stop
+        pause(0.1);
+        if get(stop_bt, 'userdata') % stop condition
+            set(stop_bt, 'userdata',0)
+            break;
+        end
         %%send new speed comands
         % Re-compute speeds
         if reached1==false
@@ -56,12 +63,6 @@ function nav(optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xStart
         end
         if pose2(1)>(xTarget2-0.1) && pose2(2)>(yTarget2-0.1) && pose2(1)<(xTarget2+0.1) && pose2(2)<(yTarget2+0.1)
             send_velocity2(0,0)
-            reached2=true;
-        end
-        if stop_var==true
-            
-            disp('stopping');
-            reached1=true;
             reached2=true;
         end
     end
