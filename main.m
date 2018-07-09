@@ -11,6 +11,7 @@ add_paths();
 %-------------------subscribers---------------------------
 subscribe_cams();
 subscribe_odom();
+subscribe_scan();
 
 %--------------------pubishers----------------------------
 global vel_pub
