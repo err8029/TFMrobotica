@@ -1,4 +1,5 @@
 <launch>
+
   <arg name="base"/>
   <arg name="stacks"/>
   <arg name="3d_sensor"/>
@@ -17,7 +18,7 @@
   <node name="spawn_turtlebot_model" pkg="gazebo_ros" type="spawn_model"
         args="-unpause -urdf -param robot_description -model mobile_base
               -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)"/>
-  
+
   <!-- Velocity muxer -->
   <node pkg="nodelet" type="nodelet" name="mobile_base_nodelet_manager" args="manager"/>
   <node pkg="nodelet" type="nodelet" name="cmd_vel_mux"
@@ -27,5 +28,5 @@
   </node>
 
   <!-- Bumper/cliff to pointcloud (not working, as it needs sensors/core messages) -->
-  <include file="$(find turtlebot_bringup)/launch/includes/kobuki/bumper2pc.launch.xml"/>
+  <!--<include file="$(find turtlebot_bringup)/launch/includes/kobuki/bumper2pc.launch.xml"/>-->
 </launch>
