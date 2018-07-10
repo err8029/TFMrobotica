@@ -1,10 +1,10 @@
 function plan_GUI(raw_map)
     global stop_bt
-    dmap=size(raw_map);
-
+    
     %DEFINE THE 2-D MAP ARRAY FROM THE CSV
     % Initialize the MAP with input values
     % Obstacle=-1,Target = 0,Robot=1,Space=2
+    dmap=size(raw_map);
     MAX_X=dmap(1);
     MAX_Y=dmap(2);
     %This array stores the coordinates of the map and the 
@@ -15,7 +15,7 @@ function plan_GUI(raw_map)
     grid on;
     grid minor;
     hold on;
-    
+
     MAP=obstacle_placement(MAP,MAX_X,MAX_Y,raw_map);
     %gather start and target for robot 1
     [MAP,xStart,yStart,xTarget,yTarget]=data_gathering(MAP,1);
@@ -31,7 +31,7 @@ function plan_GUI(raw_map)
         optimal_path2=astar(xTarget2,yTarget2,xStart2,yStart2,MAP2,MAX_X,MAX_Y);
     
         %navigation
-        nav(optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xStart,yStart,xStart2,yStart2)
+        nav(optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xStart,yStart,xStart2,yStart2,dmap)
     end
     
 end

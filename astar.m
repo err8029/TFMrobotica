@@ -1,4 +1,5 @@
 function [Optimal_path] = astar(xTarget,yTarget,xStart,yStart,MAP,MAX_X,MAX_Y)
+    
     %assign current values to the start
     xval=xStart;
     yval=yStart;
@@ -107,7 +108,6 @@ function [Optimal_path] = astar(xTarget,yTarget,xStart,yStart,MAP,MAX_X,MAX_Y)
     Optimal_path(i,1)=xval;
     Optimal_path(i,2)=yval;
     i=i+1;
-
     if ( (xval == xTarget) && (yval == yTarget))
        inode=0;
        %Traverse OPEN and determine the parent nodes

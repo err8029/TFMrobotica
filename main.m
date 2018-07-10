@@ -17,7 +17,7 @@ enable2=true;
 %-------------------subscribers---------------------------
 subscribe_cams();
 subscribe_odom();
-%subscribe_scan(); %really slow
+subscribe_scan(); %really slow
 
 %--------------------pubishers----------------------------
 global vel_pub
