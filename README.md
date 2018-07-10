@@ -8,14 +8,17 @@ Hacer un sistema multirobot usando ROS y matlab que permita a dos turtlebots rea
 
 Programa con matlab para poder teleoperar, planificar con dos turtlebots (con GUI o teclado) en gazebo y recibir la imagen de su webcam y mapear a la vez
 
-Interfaz principal
+- Interfaz principal
+
 ![alt text](https://github.com/err8029/TFMrobotica/blob/master/main_GUI.png)
 
-Panel de control de velocidades
-![alt text](https://github.com/err8029/TFMrobotica/blob/master/control_GUI.png)
+- Ventana de mapeado
 
-Ventana de mapeado
 ![alt text](https://github.com/err8029/TFMrobotica/blob/master/mapping_GUI.png)
+
+- Panel de control de velocidades
+
+![alt text](https://github.com/err8029/TFMrobotica/blob/master/control_GUI.png)
 
 **Trabajo inmediato**
 
