@@ -1,4 +1,5 @@
 function move(obj,event)
+
     disp('r1')
     %update image for any previous movement due to inertia
     display_image()

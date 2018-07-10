@@ -1,6 +1,5 @@
 function move2(obj,event)
     disp('r2')
-    disp(event.Key)
     %update image for any previous movement due to inertia
     display_image2()
     %Obtain the tag for the pressed button or the key from keyboard

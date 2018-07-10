@@ -8,17 +8,22 @@ rosinit;
 %--------add paths for functions in other folders---------
 add_paths();
 
+%---------------init enable cam ctrl vars--------------------
+global enable1
+global enable2
+enable1=true;
+enable2=true;
+
 %-------------------subscribers---------------------------
 subscribe_cams();
 subscribe_odom();
-subscribe_scan();
+%subscribe_scan(); %really slow
 
 %--------------------pubishers----------------------------
 global vel_pub
 global vel2_pub
 vel_pub = rospublisher('/robot1/mobile_base/commands/velocity');
 vel2_pub = rospublisher('/robot2/mobile_base/commands/velocity');
-
 
 %---------------create the figure------------------------
 global hfig
