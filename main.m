@@ -4,7 +4,7 @@ close all;
 
 rosshutdown;
 rosinit;
-
+tic
 %--------add paths for functions in other folders---------
 add_paths();
 
@@ -46,7 +46,7 @@ lookahead=1.2;
 freq=6;
 %update speeds in GUI
 speed_update();
-
+toc
 %---------------wait for key press----------------------
 %recursivity, one robot calls the other every time a movement is captured and so on 
 %to change the key press function

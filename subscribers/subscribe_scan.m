@@ -4,11 +4,8 @@ function subscribe_scan()
     global scan2_sub
     
     scan_sub = rossubscriber('/robot1/scan', 'BufferSize', 5);
-    while isempty(scan_sub.LatestMessage)
-        scan_sub = rossubscriber('/robot1/scan', 'BufferSize', 5);
-    end
+    pause(0.25);
     scan2_sub = rossubscriber('/robot2/scan', 'BufferSize', 5);
-    while isempty(scan2_sub.LatestMessage)
-        scan2_sub = rossubscriber('/robot2/scan', 'BufferSize', 5);
-    end
+    pause(0.25);
+    disp(scan2_sub)
 end
