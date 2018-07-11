@@ -11,8 +11,10 @@ add_paths();
 %---------------init enable cam ctrl vars--------------------
 global enable1
 global enable2
+global enable_nav
 enable1=true;
 enable2=true;
+enable_nav=false;
 
 %-------------------subscribers---------------------------
 subscribe_cams();
@@ -34,10 +36,12 @@ global vel1
 global vel2
 global w1
 global w2
-vel1=0.3;
-vel2=0.3;
+global lookahead
+vel1=0.2;
+vel2=0.2;
 w1=0.5;
 w2=0.5;
+lookahead=1.2;
 %update speeds in GUI
 speed_update();
 

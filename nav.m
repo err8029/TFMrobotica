@@ -10,6 +10,8 @@ function nav(optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xStart
     global w2
     global scan_sub
     global scan2_sub
+    global enable_nav
+    global lookahead
     
     %counter for mapping
     gmap_c = 0;
@@ -32,8 +34,8 @@ function nav(optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xStart
     pose2=[curent_pos_x2 curent_pos_y2 orientation2(1)];
 
     %init the purepursuit controller
-    controller=purePursuit_init(optimal_path,vel1,w1);
-    controller2=purePursuit_init(optimal_path2,vel2,w2);
+    controller=purePursuit_init(optimal_path,vel1,w1,lookahead);
+    controller2=purePursuit_init(optimal_path2,vel2,w2,lookahead);
     controlRate = robotics.Rate(10);
 
     %reached flags for robots
@@ -47,6 +49,7 @@ function nav(optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xStart
         pause(0.1);
         
         %update ocupancy grid
+        if enable_nav==true
             %occuancy grid for robot 1
             laserMsg = receive(scan_sub,3);
             laserdata=read_laser(laserMsg);
@@ -63,6 +66,7 @@ function nav(optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xStart
             if ~isempty(laserdata)
                 setOccupancy(map_slam,dataWorld,1);
             end 
+        end
         
         %update map
         if get(stop_bt, 'userdata') % stop condition
