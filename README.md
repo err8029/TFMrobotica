@@ -10,16 +10,16 @@ Programa con matlab para poder teleoperar, planificar con dos turtlebots (con GU
 
 - Interfaz principal
 
-![alt text](https://github.com/err8029/TFMrobotica/blob/master/main_GUI.png)
+   <img src="https://github.com/err8029/TFMrobotica/blob/master/main_GUI.png" alt="alt text" width="600" height="400">
 
 - Ventana de mapeado
 
-![alt text](https://github.com/err8029/TFMrobotica/blob/master/mapping_GUI.png)
+   <img src="https://github.com/err8029/TFMrobotica/blob/master/mapping_GUI.png" alt="alt text" width="400" height="400">
 
 - Panel de control de velocidades
 
-![alt text](https://github.com/err8029/TFMrobotica/blob/master/GUI_control.png)
+   <img src="https://github.com/err8029/TFMrobotica/blob/master/control_GUI.png" alt="alt text" width="500" height="400">
 
 **Trabajo inmediato**
 
-Que un robot tenga en cuenta a posicion del otro al planificar,intentar mejorar los tiempos de suscripcion al laser,  control de la frecuencia de mapeado o otro nodo para mapeado, mejor integración de la ventana de mapeado y probarlo en la realidad
+Que un robot tenga en cuenta a posicion del otro al planificar,intentar mejorar los tiempos de suscripcion al laser, probar otro nodo para mapeado, mejor integración de la ventana de mapeado y probarlo en la realidad
