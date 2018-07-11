@@ -22,4 +22,4 @@ Programa con matlab para poder teleoperar, planificar con dos turtlebots (con GU
 
 **Trabajo inmediato**
 
-Que un robot tenga en cuenta a posicion del otro al planificar,intentar mejorar los tiempos de suscripcion al laser, probar otro nodo para mapeado, mejor integración de la ventana de mapeado y probarlo en la realidad
+Que un robot tenga en cuenta a posicion del otro al planificar, probar otro nodo para mapeado, mejor integración de la ventana de mapeado y probarlo en la realidad
