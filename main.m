@@ -37,11 +37,13 @@ global vel2
 global w1
 global w2
 global lookahead
+global freq
 vel1=0.2;
 vel2=0.2;
 w1=0.5;
 w2=0.5;
 lookahead=1.2;
+freq=6;
 %update speeds in GUI
 speed_update();
 

@@ -12,9 +12,10 @@ function nav(optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xStart
     global scan2_sub
     global enable_nav
     global lookahead
+    global freq
     
     %counter for mapping
-    gmap_c = 1;
+    gmap_c=1;
     %define an empty ocupancy grid
     map_slam = robotics.BinaryOccupancyGrid(dmap(1,1)*2+5,dmap(1,2)*2+5,5);
     
@@ -49,7 +50,7 @@ function nav(optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xStart
         pause(0.1);
         
         %update ocupancy grid
-        if enable_nav==true && gmap_c>6
+        if enable_nav==true && gmap_c>freq
             %occuancy grid for robot 1
             laserMsg = receive(scan_sub,3);
             laserdata=read_laser(laserMsg);
