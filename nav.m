@@ -14,7 +14,7 @@ function nav(optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xStart
     global lookahead
     
     %counter for mapping
-    gmap_c = 0;
+    gmap_c = 1;
     %define an empty ocupancy grid
     map_slam = robotics.BinaryOccupancyGrid(dmap(1,1)*2+5,dmap(1,2)*2+5,5);
     
@@ -49,7 +49,7 @@ function nav(optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xStart
         pause(0.1);
         
         %update ocupancy grid
-        if enable_nav==true
+        if enable_nav==true && gmap_c>6
             %occuancy grid for robot 1
             laserMsg = receive(scan_sub,3);
             laserdata=read_laser(laserMsg);
@@ -65,7 +65,8 @@ function nav(optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xStart
             [dataWorld]=plotData(plotobj,pose2,laserdata);
             if ~isempty(laserdata)
                 setOccupancy(map_slam,dataWorld,1);
-            end 
+            end
+            gmap_c=1;
         end
         
         %update map
@@ -82,6 +83,7 @@ function nav(optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xStart
             odom_update();
             display_image();
             pose=[curent_pos_x+position1(1) curent_pos_y+position1(2) orientation1(1)];
+            gmap_c=gmap_c+1;
         end
         if reached2==false
             [vs2, ws2] = step(controller2,pose2);
@@ -90,6 +92,7 @@ function nav(optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xStart
             odom_update2();
             display_image2();
             pose2=[curent_pos_x2+position2(1) curent_pos_y2+position2(2) orientation2(1)];
+            gmap_c=gmap_c+1;
         end    
         if pose(1)>(xTarget-0.1) && pose(2)>(yTarget-0.1) && pose(1)<(xTarget+0.1) && pose(2)<(yTarget+0.1)
             send_velocity(0,0)
