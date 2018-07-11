@@ -1,4 +1,4 @@
-function plan_GUI(raw_map)
+function map_and_nav(raw_map)
     global stop_bt
     
     %DEFINE THE 2-D MAP ARRAY FROM THE CSV

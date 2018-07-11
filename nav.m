@@ -20,7 +20,9 @@ function nav(optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xStart
     map_slam = robotics.BinaryOccupancyGrid(dmap(1,1)*2+5,dmap(1,2)*2+5,5);
     
     %define a plot obj for the ocupancy grid
-    plotobj = TurtleBotVisualizer([0,dmap(1,1)+2,0,dmap(1,2)+2]);
+    if enable_nav==true
+        plotobj = TurtleBotVisualizer([0,dmap(1,1)+2,0,dmap(1,2)+2]);
+    end
     
     %init current pos
     odom_obtention();

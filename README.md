@@ -10,15 +10,15 @@ Programa con matlab para poder teleoperar, planificar con dos turtlebots (con GU
 
 - Interfaz principal
 
-   <img src="https://github.com/err8029/TFMrobotica/blob/master/main_GUI.png" alt="alt text" width="600" height="400">
+   <img src="https://github.com/err8029/TFMrobotica/blob/master/img/img_readme/main_GUI.png" alt="alt text" width="600" height="400">
 
 - Ventana de mapeado
 
-   <img src="https://github.com/err8029/TFMrobotica/blob/master/mapping_GUI.png" alt="alt text" width="400" height="400">
+   <img src="https://github.com/err8029/TFMrobotica/blob/master/img/img_readme/mapping_GUI.png" alt="alt text" width="400" height="400">
 
 - Panel de control de velocidades
 
-   <img src="https://github.com/err8029/TFMrobotica/blob/master/control_GUI.png" alt="alt text" width="500" height="400">
+   <img src="https://github.com/err8029/TFMrobotica/blob/master/img/img_readme/control_GUI.png" alt="alt text" width="500" height="400">
 
 **Trabajo inmediato**
 

@@ -121,7 +121,7 @@ function start(obj,event)
      hold on;
      %read the csv, plot it and obtain the paths and execute navigation
      map=csvread('map/map4.csv');
-     plan_GUI(map);
+     map_and_nav(map);
 end
 
 function arrow_draw(up,down,left,right)

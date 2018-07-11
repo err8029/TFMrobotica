@@ -1,7 +1,0 @@
-function  adjust_freq()
-    global l_text
-    global freq
-    freq=obj.Value;
-    l_text.String=num2str(freq);
-end
-
