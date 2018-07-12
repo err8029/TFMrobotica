@@ -30,6 +30,9 @@ function map_and_nav(raw_map)
         optimal_path=astar(xTarget,yTarget,xStart,yStart,MAP,MAX_X,MAX_Y);
         optimal_path2=astar(xTarget2,yTarget2,xStart2,yStart2,MAP2,MAX_X,MAX_Y);
     
+        %analyse the new paths
+        %path_analyser(optimal_path,optimal_path2,MAP,MAP2,MAX_X,MAX_Y,xStart,yStart,xTarget,yTarget)
+        
         %navigation
         nav(optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xStart,yStart,xStart2,yStart2,dmap)
     end
