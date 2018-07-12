@@ -8,7 +8,7 @@ Hacer un sistema multirobot usando ROS y matlab que permita a dos turtlebots rea
 
 - <h3>Trabajo para septiembre</h3>
 
-   <img src="https://github.com/err8029/TFMrobotica/blob/master/img/img_readme/doing.png" alt="alt text" width="25" height="25">  Tener un state of the art (repo: )
+   <img src="https://github.com/err8029/TFMrobotica/blob/master/img/img_readme/doing.png" alt="alt text" width="25" height="25">  Tener un state of the art (repo: https://github.com/err8029/TFM_stateOfTheArt)
 
    <img src="https://github.com/err8029/TFMrobotica/blob/master/img/img_readme/doing.png" alt="alt text" width="25" height="25">  Acabar el metodo de deteccion de colisiones con otros robots
 
