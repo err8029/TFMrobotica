@@ -1,0 +1,31 @@
+clear
+clc
+close all
+
+%num of images to be read
+files=50;
+%init matrix
+imageMatrix = uint8(zeros(240,320,3,numel(files)));
+pixel_labelsMatrix = uint8(zeros(240,320,numel(files)));
+image_labMatrix = uint8(zeros(240,320,3,numel(files)));
+%read and store all the images
+for k = 1:files
+    image = imread([num2str(k) '.png']);
+    
+    mask = false(size(image)); 
+    mask(170,70) = true;
+    W = graydiffweight(image, mask,'GrayDifferenceCutoff', 25);
+    thresh=0.5;
+    [BW, D] = imsegfmm(W, mask, thresh);
+    
+    imageMatrix(:,:,:,k) = image;
+end
+figure();
+for i=1:1:10
+    for j=1:1:5
+        for p=1:1:50
+            subplot(i,j,1)
+            imshow(BWMatrix(:,:,p),[]), title('image labeled by cluster index');
+        end
+    end
+end

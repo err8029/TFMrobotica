@@ -7,6 +7,6 @@
 #rename the files to 001.png style
 i=1
 for file in *; do
-	mv "$file" "$(printf %03d $i).png"
+	mv "$file" "$(printf $i).png"
 	i=$((i+1))
 done
