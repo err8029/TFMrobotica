@@ -22,7 +22,7 @@ Hacer un sistema multirobot usando ROS y matlab que permita a dos turtlebots rea
 
    <img src="https://github.com/err8029/TFMrobotica/blob/master/img/img_readme/no.png" alt="alt text" width="25" height="25">  Ver que partes se pueden pasar a c++ para implementación en los robots reales
 
-   <img src="https://github.com/err8029/TFMrobotica/blob/master/img/img_readme/no.png" alt="alt text" width="25" height="25">  Introducir objetos de mas complejidad en el mapa para analizar como los ven los robots
+   <img src="https://github.com/err8029/TFMrobotica/blob/master/img/img_readme/yes.png" alt="alt text" width="25" height="25">  Introducir objetos de mas complejidad en el mapa para analizar como los ven los robots
 
 - <h3> Cosas de más </h3>
 
