@@ -12,6 +12,9 @@ function createfig()
     hmenu = uimenu('Label','&Options','Tag','M');       
 		uimenu(hmenu,'Label','&exit','Callback',@close,'separator','on','Accelerator','E');
         uimenu(hmenu,'Label','&control panel','Callback',@create_control,'separator','on','Accelerator','C');
+        
+    hmenu = uimenu('Label','&Vision','Tag','M');       
+		uimenu(hmenu,'Label','&Data gathering','Callback',@create_data_GUI,'separator','on','Accelerator','D');
     
     %------------------create texts and rectangles------------------------
     %rectangles for robot 1

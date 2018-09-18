@@ -12,9 +12,11 @@ add_paths();
 global enable1
 global enable2
 global enable_nav
+global checker
 enable1=true;
 enable2=true;
-enable_nav=false;
+enable_nav=true;%enable mapping and reactive
+checker=false;%use checker as navigation way
 
 %-------------------subscribers---------------------------
 subscribe_cams();
@@ -30,7 +32,6 @@ vel2_pub = rospublisher('/robot2/mobile_base/commands/velocity');
 %---------------create the figure------------------------
 global hfig
 createfig();
-
 %---------------init velocity-------------------------
 global vel1
 global vel2
