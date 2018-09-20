@@ -6,7 +6,5 @@ addpath('subscribers');
 addpath('aux_functions');
 %astar funs
 addpath('astar_fun');
-%purpursuit controller funs
-addpath('purePursuit_fun');
 end
 

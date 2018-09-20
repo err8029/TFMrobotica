@@ -29,15 +29,13 @@ function map_and_nav(raw_map,GUI)
         error=1;
     end
     %check stop
-    if  get(GUI.stop_bt, 'userdata')
-        set(GUI.stop_bt, 'userdata',0)
-    elseif error==1%stop the process completly
-        title='warning';
-        message=({'initial position data not obtained correctly,';' therefore the proccess will stop'});
-        myicon=imread('img/warning.png');
-        myicon=imresize(myicon, [64, 64]);
-        msgbox(message,title,'custom',myicon)
-    else
+    if  GUI.error==1
+        GUI.error=0;
+    end
+    if error==1%stop the process completly
+        GUI.msg()
+    end
+    if error==0 && GUI.error==0
         %A* algorithm   
         optimal_path=astar(xTarget,yTarget,xStart,yStart,MAP,MAX_X,MAX_Y);
         optimal_path2=astar(xTarget2,yTarget2,xStart2,yStart2,MAP2,MAX_X,MAX_Y);

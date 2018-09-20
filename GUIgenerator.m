@@ -15,6 +15,7 @@ classdef GUIgenerator < handle
         map_window=[];
         manual_nav=Manual_nav();
         control_texts=[];
+        error=0;
     end
     methods (Access = public)
         function GUI = GUIgenerator()
@@ -312,7 +313,11 @@ classdef GUIgenerator < handle
              map_and_nav(map,GUI);
         end
         function stop(GUI,~,~)
-            set(GUI.stop_bt,'userdata',1)
+            if GUI.error==1
+                GUI.error=0;
+            else
+                GUI.error=1;
+            end
         end
         function arrow_draw(GUI,up,down,left,right)
             %arrows for robot1
@@ -431,6 +436,13 @@ classdef GUIgenerator < handle
             else
                 disp('error, something with checkboxes went wrong');
             end
+        end
+        function msg(~,~,~)
+            title='warning';
+            message=({'process stopped'});
+            myicon=imread('img/warning.png');
+            myicon=imresize(myicon, [64, 64]);
+            msgbox(message,title,'custom',myicon)
         end
     end
 end

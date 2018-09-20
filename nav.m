@@ -89,8 +89,9 @@ function nav(GUI,optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xS
             gmap_c=1;
         end
         %check stop
-        if get(GUI.stop_bt, 'userdata') % stop condition
-            set(GUI.stop_bt, 'userdata',0)
+        if GUI.error==1
+            GUI.error=0;
+            GUI.msg()
             break;
         end
         %%send new speed comands
