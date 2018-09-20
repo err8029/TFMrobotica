@@ -1,0 +1,37 @@
+CNN instructions
+
+
+structure of the network:
+-7 groups of layers:
+
+	-Image input layer
+
+	-------------Core x3------------------
+	-convolutional 2D layer
+	   32 padding filters of a size 5x5
+	-ReLu layer
+	-Max pooling 2D layer
+	   3x3 spatial area with a stride of 2 pixels (downsamples till 160x120)
+	--------------------------------------
+
+	-fully connected layer (64 neurons)
+	-ReLu layer
+	-fully connected layer (1 neuron per label)
+	-softmax layer
+	-classification output layer 
+
+initializing is done with random numbers
+size of the pics RGB  (320x240x3)
+estimated training time with GPU: 200 to 300 min
+
+data per object:
+
+for training:
+---------------------------
+5000 images of each type (different sizes orientations, enviroments and so on)
+a document with 5000 labels
+
+for testing:
+---------------------------
+5000 images more
+a document with 5000 labels

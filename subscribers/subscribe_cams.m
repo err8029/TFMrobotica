@@ -1,3 +1,4 @@
+
 function [img_sub]=subscribe_cams(rob_num)
 %returns the latest message for the cameras of the 2 robots, from there the
 %images can be extracted

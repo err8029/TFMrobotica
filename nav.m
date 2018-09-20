@@ -15,6 +15,7 @@ function nav(GUI,optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xS
     %init current pos
     [position1, orientation1] = GUI.robots.odom_obtention(1);
     [position2, orientation2] = GUI.robots.odom_obtention(2);
+
 %     orientation_ans=orientation1(1);
 %     orientation2_ans=orientation2(1);
     %reset odom but save orientation
@@ -63,7 +64,7 @@ function nav(GUI,optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xS
                 [dataWorld]=plotData(GUI.map_window,pose,laserdata);
                 if ~isempty(laserdata)
                     setOccupancy(GUI.generated_map,dataWorld,1);
-                end 
+                end
             end
             %occuancy grid for robot 2
             if reached2==false
@@ -113,6 +114,7 @@ function nav(GUI,optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xS
             gmap_c=gmap_c+1;
         end
         
+
         %reactive control for collision avoidance
         if reactive==true
             disp('reactive')
@@ -129,6 +131,7 @@ function nav(GUI,optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xS
         end
         %spin for robot 2
         if reactive2==true
+
             %check direction given by distance of the obstacles
             if dir2=='l'
                 w=0.4;
@@ -146,7 +149,7 @@ function nav(GUI,optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xS
             reached1=true;
         end
         if pose2(1)>(xTarget2-0.1) && pose2(2)>(yTarget2-0.1) && pose2(1)<(xTarget2+0.1) && pose2(2)<(yTarget2+0.1)
-            GUI.robots.send_velocity2(0,0,2)
+            GUI.robots.send_velocity(0,0,2)
             reached2=true;
         end
         if reached1==true && reached2==true

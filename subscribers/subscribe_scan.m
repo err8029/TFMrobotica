@@ -1,3 +1,4 @@
+
 function [scan_sub]=subscribe_scan(rob_num)
 %creates a gobal scan subscriber
     if rob_num==1

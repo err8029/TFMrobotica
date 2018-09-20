@@ -1,3 +1,4 @@
+
 function [odom_sub]=subscribe_odom(rob_num)
 %creates a goba odom subscriber
     if rob_num==1
