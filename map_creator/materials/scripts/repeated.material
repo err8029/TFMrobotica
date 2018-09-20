@@ -1,0 +1,72 @@
+material Repeated/seamless
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        // Relative to the location of the material script
+        texture ../textures/seamless_texture.png
+        // Repeat the texture over the surface (4 per face)
+        scale 0.5 2.5
+      }
+    }
+  }
+}
+material Repeated/wood
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        // Relative to the location of the material script
+        texture ../textures/wood2.jpg
+      }
+    }
+  }
+}
+material Repeated/wood2
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        // Relative to the location of the material script
+        texture ../textures/wood3.jpg
+      }
+    }
+  }
+}
+material Repeated/wood3
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        // Relative to the location of the material script
+        texture ../textures/wood4.jpg
+      }
+    }
+  }
+}
+material Repeated/sofa
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        // Relative to the location of the material script
+        texture ../textures/sofa.jpg
+      }
+    }
+  }
+}

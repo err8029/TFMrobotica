@@ -1,0 +1,130 @@
+classdef Robots < handle
+    
+    properties
+        subs=[];
+        pubs=[];
+        vel1=0.2;
+        vel2=0.2;
+        w1=0.5;
+        w2=0.5;
+        lookahead=1.2;
+        freq=6;
+        position1=[];
+    	position2=[];
+        orientation1=[];
+    	orientation2=[];
+    end
+    
+    methods (Access = public)
+        function ROB = Robots()
+            add_paths();
+            ROB.Init();
+        end
+        function Init(ROB,~,~)
+            if isempty(ROB.pubs)
+                ROB.pubs.vel_pub = rospublisher('/robot1/mobile_base/commands/velocity');
+                ROB.pubs.vel2_pub = rospublisher('/robot2/mobile_base/commands/velocity');
+            end
+            if isempty(ROB.subs)
+                ROB.subs.scan1=subscribe_scan(1);
+                ROB.subs.scan2=subscribe_scan(2);
+                ROB.subs.odom1=subscribe_odom(1);
+                ROB.subs.odom2=subscribe_odom(2);
+                ROB.subs.cam1=subscribe_cams(1);
+                ROB.subs.cam2=subscribe_cams(2);
+            end
+            
+        end
+        function [position,orientation]=odom_obtention(ROB,rob_num)
+            if rob_num==1
+                msg=receive(ROB.subs.odom1);
+            else
+                msg=receive(ROB.subs.odom2);
+            end
+            %position odom for robot 
+            x=msg.Pose.Pose.Position.X;
+            y=msg.Pose.Pose.Position.Y;
+            z=msg.Pose.Pose.Position.Z;
+            %orientation odom for robot 
+            W=msg.Pose.Pose.Orientation.W;
+            X=msg.Pose.Pose.Orientation.X;
+            Y=msg.Pose.Pose.Orientation.Y;
+            Z=msg.Pose.Pose.Orientation.Z;
+            angles = quat2eul([W X Y Z]);
+            %put info into arrays
+            position =[x,y,z];
+            orientation =  angles;
+        end
+        function display_image(ROB,enable,img_handle,rob_num)   
+            if rob_num==1
+                msg=receive(ROB.subs.cam1);
+            else
+                msg=receive(ROB.subs.cam2);
+            end
+            if enable==true
+                %change to the axes of robot 1 and show the image
+                axes(img_handle)
+                imshow(img_view(msg))
+            end
+        end
+        function laserData = read_laser(~,laserMsg)
+        %readPose Extract the laser data in Cartesian coordinates
+            laserData = readCartesian(laserMsg) * [0 1; -1 0];
+        end
+        function [distance,dir] = distance_extract(~,new_scan)
+            dis=[];
+            new_scan=new_scan(:,2)';
+            for i=1:1:length(new_scan)        
+                if isnan(new_scan(i))==false
+                    dis=[dis new_scan(i)];
+                end
+            end
+            %if all is NaN then the distance is outside the range of the sensor
+            if isempty(dis)
+                dis=5;
+            end
+            [distance,index]=min(dis);
+            if index<(length(new_scan)/2)
+                dir='l';
+            else
+                dir='r';
+            end
+        end
+        function send_velocity(ROB,lin,ang,num_robot)
+            if num_robot==1
+            	vel_pub = ROB.pubs.vel_pub;
+            else
+                vel_pub = ROB.pubs.vel2_pub;
+            end
+            msg_vel = rosmessage(ROB.pubs.vel_pub);
+            msg_vel.Linear.X=lin;
+            msg_vel.Linear.Y=lin;
+            msg_vel.Linear.Z=lin;
+            msg_vel.Angular.X=ang;
+            msg_vel.Angular.Y=ang;
+            msg_vel.Angular.Z=ang;
+            send(vel_pub,msg_vel)
+        end
+        function [controller] = purePursuit_init(ROB,optimal_path)
+            controller = robotics.PurePursuit;
+            controller.Waypoints = optimal_path;
+            controller.DesiredLinearVelocity = ROB.vel1;%0.3
+            controller.MaxAngularVelocity = ROB.w1;%0.5
+            controller.LookaheadDistance = ROB.lookahead;
+        end
+        function [controller] = purePursuit_mod(~,controller,lin)
+            controller.DesiredLinearVelocity = lin;
+            controller.MaxAngularVelocity = lin*3;
+            controller.LookaheadDistance = lin/4;
+        end
+    end
+end
+
+
+
+
+
+
+
+
+
