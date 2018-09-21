@@ -13,8 +13,6 @@ function map_and_nav(raw_map,GUI)
     MAX_Y=dmap(2);
     %This array stores the cost map for A* and all obstacles
     MAP=2*(ones(MAX_X,MAX_Y));
-    %plot and save map
-    axes(GUI.plan_handle);
     MAP=obstacle_placement(MAP,MAX_X,MAX_Y,raw_map);
     MAP2=MAP;
     
@@ -24,8 +22,15 @@ function map_and_nav(raw_map,GUI)
     hold on;
     
     if isempty(GUI.robots.xStart)==true
-        try
-            axes(GUI.plan_handle);
+        %init generated_map
+            %define a plot obj for the ocupancy grid
+        if GUI.enable_bts.enable_nav==true
+            GUI.map_window = TurtleBotVisualizer([0,dmap(1,1)+2,0,dmap(1,2)+2]);
+        end
+        if isempty(GUI.generated_map)
+            GUI.generated_map=robotics.BinaryOccupancyGrid(dmap(1,1)*2+5,dmap(1,2)*2+5,5);
+        end
+        try                 
             %gather start and target for robot 1
             [MAP,GUI.robots.xStart,GUI.robots.yStart,GUI.robots.xTarget,GUI.robots.yTarget]=data_gathering(MAP,1);
             %gather start and target for robot 2
@@ -33,15 +38,9 @@ function map_and_nav(raw_map,GUI)
         catch
             error=1;
         end
-        %init generated_map and mapping class as map_window obj
-        if GUI.enable_bts.enable_nav==true
-            GUI.map_window = TurtleBotVisualizer([0,dmap(1,1)+2,0,dmap(1,2)+2]);
-        end
-        if isempty(GUI.generated_map)
-            GUI.generated_map=robotics.BinaryOccupancyGrid(dmap(1,1)*2+5,dmap(1,2)*2+5,5);
-        end
     else
         GUI.robots.reset_odom();
+        axes(GUI.plan_handle);
         GUI.robots.xStart=GUI.robots.xTarget+1;
         GUI.robots.yStart=GUI.robots.yTarget;
         GUI.robots.yStart2=GUI.robots.yTarget2;
@@ -64,7 +63,6 @@ function map_and_nav(raw_map,GUI)
     if error==0 && GUI.error==0
         %when navigation starts delete any previous messages
         delete(GUI.warn_msg)
-        axes(GUI.plan_handle);
         %A* algorithm   
         optimal_path=astar(GUI.robots.xTarget,GUI.robots.yTarget,GUI.robots.xStart,GUI.robots.yStart,MAP,MAX_X,MAX_Y);
         optimal_path2=astar(GUI.robots.xTarget2,GUI.robots.yTarget2,GUI.robots.xStart2,GUI.robots.yStart2,MAP2,MAX_X,MAX_Y);
@@ -74,7 +72,7 @@ function map_and_nav(raw_map,GUI)
         
         %navigation
         nav(GUI,optimal_path,optimal_path2,GUI.robots.xTarget,GUI.robots.yTarget,GUI.robots.xTarget2,GUI.robots.yTarget2,...
-            GUI.robots.xStart,GUI.robots.yStart,GUI.robots.xStart2,GUI.robots.yStart2)
+            GUI.robots.xStart,GUI.robots.yStart,GUI.robots.xStart2,GUI.robots.yStart2,dmap)
     end   
 end
 function [MAP,xStart,yStart,xTarget,yTarget]=data_gathering(MAP,rob_num)

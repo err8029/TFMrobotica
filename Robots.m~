@@ -16,8 +16,7 @@ classdef Robots < handle
         xStart2=[];
         yStart2=[];
         xTarget2=[];
-        yTarget2=[];
-        dataWorld=[];
+        yTarget2=[];        
     end
     
     methods (Access = public)
@@ -29,8 +28,8 @@ classdef Robots < handle
             if isempty(ROB.pubs)
                 ROB.pubs.vel_pub = rospublisher('/robot1/mobile_base/commands/velocity');
                 ROB.pubs.vel2_pub = rospublisher('/robot2/mobile_base/commands/velocity');
-                ROB.pubs.odom_reset = rospublisher('/robot1/mobile_base/commands/reset_odometry');
-                ROB.pubs.odom_reset2 = rospublisher('/robot2/mobile_base/commands/reset_odometry');
+                ROB.pubs.odom_reset = rospublisher(/robot1/mobile_base/commands/reset_odometry);
+                ROB.pubs.odom_reset = rospublisher('/robot2/mobile_base/commands/velocity');
             end
             if isempty(ROB.subs)
                 ROB.subs.scan1=subscribe_scan(1);
@@ -124,13 +123,16 @@ classdef Robots < handle
             controller.MaxAngularVelocity = lin*3;
             controller.LookaheadDistance = lin/4;
         end
-        function reset_odom(ROB,~,~)
-            msg = rosmessage(ROB.pubs.odom_reset);
-            msg2 = rosmessage(ROB.pubs.odom_reset2);
+        function reset_odom()
+    global odom_pub_reset
+    global odom_pub_reset2
 
-            send(ROB.pubs.odom_reset,msg);
-            send(ROB.pubs.odom_reset2,msg2);
-        end
+    msg = rosmessage(odom_pub_reset);
+    msg2 = rosmessage(odom_pub_reset2);
+    
+    send(odom_pub_reset,msg);
+    send(odom_pub_reset2,msg2);
+end
     end
 end
 
