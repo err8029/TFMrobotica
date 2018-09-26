@@ -12,7 +12,7 @@ classdef Manual_nav < handle
         function key_velCommand2(~,GUI,ID,key)
             if strcmp('up2',ID) || strcmp('uparrow',key)%move up robot 2
                 %update images
-                if GUI.img_rate2==3
+                if GUI.img_rate2==1
                     GUI.robots.display_image(GUI.enable_bts.enable2,GUI.img2_handle,2)
                     GUI.img_rate2=0;
                 end
@@ -23,7 +23,7 @@ classdef Manual_nav < handle
             end
             if strcmp('down2',ID) || strcmp('downarrow',key)%move down robot 2
                 %update images
-                if GUI.img_rate2==3
+                if GUI.img_rate2==1
                     GUI.robots.display_image(GUI.enable_bts.enable2,GUI.img2_handle,2)
                     GUI.img_rate2=0;
                 end
@@ -34,7 +34,7 @@ classdef Manual_nav < handle
             end
             if strcmp('left2',ID) || strcmp('leftarrow',key)%move left robot 2
                 %update images
-                if GUI.img_rate2==3
+                if GUI.img_rate2==1
                     GUI.robots.display_image(GUI.enable_bts.enable2,GUI.img2_handle,2)
                     GUI.img_rate2=0;
                 end
@@ -45,7 +45,7 @@ classdef Manual_nav < handle
             end
             if strcmp('right2',ID) || strcmp('rightarrow',key)%move right robot 2
                 %update images
-                if GUI.img_rate2==3
+                if GUI.img_rate2==1
                     GUI.robots.display_image(GUI.enable_bts.enable2,GUI.img2_handle,2)
                     GUI.img_rate2=0;
                 end
@@ -58,7 +58,7 @@ classdef Manual_nav < handle
         function key_velCommand(~,GUI,ID,key)
             if strcmp('up',ID)|| strcmp('w',key)%move up robot 1
                 %update images
-                if GUI.img_rate1==3
+                if GUI.img_rate1==1
                     GUI.robots.display_image(GUI.enable_bts.enable1,GUI.img1_handle,1)
                     GUI.img_rate1=0;
                 end
@@ -69,7 +69,7 @@ classdef Manual_nav < handle
             end
             if strcmp('down',ID) || strcmp('s',key)%move down robot 1
                 %update images
-                if GUI.img_rate1==3
+                if GUI.img_rate1==1
                     GUI.robots.display_image(GUI.enable_bts.enable1,GUI.img1_handle,1)
                     GUI.img_rate1=0;
                 end
@@ -80,7 +80,7 @@ classdef Manual_nav < handle
             end
             if strcmp('left',ID) || strcmp('a',key)%move left robot 1
                  %update images
-                if GUI.img_rate1==3
+                if GUI.img_rate1==1
                     GUI.robots.display_image(GUI.enable_bts.enable1,GUI.img1_handle,1)
                     GUI.img_rate1=0;
                 end
@@ -91,7 +91,7 @@ classdef Manual_nav < handle
             end
             if strcmp('right',ID) || strcmp('d',key)%move right robot 1
                 %update images
-                if GUI.img_rate1==3
+                if GUI.img_rate1==1
                     GUI.robots.display_image(GUI.enable_bts.enable1,GUI.img1_handle,1)
                     GUI.img_rate1=0;
                 end

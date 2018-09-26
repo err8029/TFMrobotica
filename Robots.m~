@@ -3,11 +3,11 @@ classdef Robots < handle
     properties
         subs=[];
         pubs=[];
-        vel1=0.2;
-        vel2=0.2;
-        w1=0.5;
-        w2=0.5;
-        lookahead=1.2;
+        vel1=0.3;
+        vel2=0.3;
+        w1=0.2;
+        w2=0.2;
+        lookahead=1;
         freq=6;
         xStart=[];
         yStart=[];
@@ -16,7 +16,8 @@ classdef Robots < handle
         xStart2=[];
         yStart2=[];
         xTarget2=[];
-        yTarget2=[];        
+        yTarget2=[];
+        dataWorld=[];
     end
     
     methods (Access = public)
@@ -28,8 +29,8 @@ classdef Robots < handle
             if isempty(ROB.pubs)
                 ROB.pubs.vel_pub = rospublisher('/robot1/mobile_base/commands/velocity');
                 ROB.pubs.vel2_pub = rospublisher('/robot2/mobile_base/commands/velocity');
-                ROB.pubs.odom_reset = rospublisher(/robot1/mobile_base/commands/reset_odometry);
-                ROB.pubs.odom_reset = rospublisher('/robot2/mobile_base/commands/velocity');
+                ROB.pubs.odom_reset = rospublisher('/robot1/mobile_base/commands/reset_odometry');
+                ROB.pubs.odom_reset2 = rospublisher('/robot2/mobile_base/commands/reset_odometry');
             end
             if isempty(ROB.subs)
                 ROB.subs.scan1=subscribe_scan(1);
@@ -89,7 +90,9 @@ classdef Robots < handle
             if isempty(dis)
                 dis=5;
             end
-            [distance,index]=min(dis);
+            for i=1:1:10
+                [distance,index]=min(dis);
+            end
             if index<(length(new_scan)/2)
                 dir='l';
             else
@@ -123,16 +126,13 @@ classdef Robots < handle
             controller.MaxAngularVelocity = lin*3;
             controller.LookaheadDistance = lin/4;
         end
-        function reset_odom()
-    global odom_pub_reset
-    global odom_pub_reset2
+        function reset_odom(ROB,~,~)
+            msg = rosmessage(ROB.pubs.odom_reset);
+            msg2 = rosmessage(ROB.pubs.odom_reset2);
 
-    msg = rosmessage(odom_pub_reset);
-    msg2 = rosmessage(odom_pub_reset2);
-    
-    send(odom_pub_reset,msg);
-    send(odom_pub_reset2,msg2);
-end
+            send(ROB.pubs.odom_reset,msg);
+            send(ROB.pubs.odom_reset2,msg2);
+        end
     end
 end
 

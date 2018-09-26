@@ -3,11 +3,11 @@ classdef Robots < handle
     properties
         subs=[];
         pubs=[];
-        vel1=0.2;
-        vel2=0.2;
+        vel1=0.25;
+        vel2=0.25;
         w1=0.5;
         w2=0.5;
-        lookahead=1.2;
+        lookahead=1;
         freq=6;
         xStart=[];
         yStart=[];
@@ -87,14 +87,23 @@ classdef Robots < handle
                 end
             end
             %if all is NaN then the distance is outside the range of the sensor
-            if isempty(dis)
+            if isempty(dis)==true || length(dis)<10
                 dis=5;
-            end
-            [distance,index]=min(dis);
-            if index<(length(new_scan)/2)
-                dir='l';
+                distance=dis;
+                dir='r';%whatever if it does so its hitting against the wall
             else
-                dir='r';
+                indexs=[];
+                for i=1:1:10
+                    [~,index]=min(dis);
+                    indexs=[indexs index];
+                end
+                index=round(mean(indexs));
+                distance=dis(index);
+                if index<(length(new_scan)/2)
+                    dir='l';
+                else
+                    dir='r';
+                end
             end
         end
         function send_velocity(ROB,lin,ang,num_robot)

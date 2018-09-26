@@ -16,6 +16,8 @@ classdef GUIgenerator < handle
         manual_nav=Manual_nav();
         control_texts=[];
         error=0;
+        warn_msg=[];
+        continue_msg=1;
     end
     methods (Access = public)
         function GUI = GUIgenerator()
@@ -311,7 +313,20 @@ classdef GUIgenerator < handle
              %read the csv, plot it and obtain the paths and execute navigation
              map=csvread('map/map4.csv');
              map_and_nav(map,GUI);
-             map_and_nav(map,GUI);%sima
+             
+             while GUI.continue_msg==1
+                 if GUI.error==0
+                 choice = questdlg('Would you like to continue?', ...
+                'Continue to next task', ...
+                'Yes','No','Yes');
+                 switch choice
+                     case 'No'  
+                        GUI.continue_msg=0;
+                     case 'Yes'
+                        GUI.continue_msg=1;
+                        map_and_nav(map,GUI);%simulates a 2nd task
+                 end   
+                 end
         end
         function stop(GUI,~,~)
             if GUI.error==1
@@ -438,12 +453,12 @@ classdef GUIgenerator < handle
                 disp('error, something with checkboxes went wrong');
             end
         end
-        function msg(~,~,~)
+        function msg(GUI,~,~)
             title='warning';
             message=({'process stopped'});
             myicon=imread('img/warning.png');
             myicon=imresize(myicon, [64, 64]);
-            msgbox(message,title,'custom',myicon)
+            GUI.warn_msg=msgbox(message,title,'custom',myicon);
         end
     end
 end

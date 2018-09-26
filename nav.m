@@ -109,7 +109,7 @@ function nav(GUI,optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xS
             waitfor(controlRate);
             position_ans=position1;
             [position1,orientation1]=GUI.odom_update(1);
-            if position1(1)-position_ans(1)<0 || position1(2)-position_ans(2)<0
+            if atan((position1(1)-position_ans)/(position1(2))-position_ans)<0
                 heading='d';%heading down
             else
                 heading='u';%heading up
@@ -124,7 +124,7 @@ function nav(GUI,optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xS
             waitfor(controlRate);
             position_ans=position2;
             [position2,orientation2]=GUI.odom_update(2);%update texts in GUI
-            if position2(1)-position_ans(1)<0 || position2(2)-position_ans(2)<0
+            if atan((position1(1)-position_ans)/(position1(2))-position_ans)<0
                 heading2='d';%heading down
             else
                 heading2='u';%heading ap
@@ -139,49 +139,55 @@ function nav(GUI,optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xS
         if reactive==true
             disp('reactive')
             disp(heading2)
+            disp(dir)
             %check direction given by distance of the obstacles
             if heading=='u'%if we are going up
                 if dir=='l'
-                    w=-0.4;%minus if left
+                    w=0.7;%minus if left
                     v=0.2;
                 else
-                    w=0.4;
+                    w=-0.7;
                     v=0.2;
                 end
             else
                 if dir=='l'
-                    w=0.4;%minus is right, down is inverted
+                    w=-0.7;%minus is right, down is inverted
                     v=0.2;
                 else
-                    w=-0.4;
+                    w=0.7;
                     v=0.2;
                 end
             end
             GUI.robots.send_velocity(v,w,1);
+            [position1,orientation1]=GUI.odom_update(1);
+            pose=[curent_pos_x2+position1(1) curent_pos_y2+position1(2) orientation1(1)];
             reactive=false;
         end
         %spin for robot 2
         if reactive2==true
             disp(heading2)
+            disp(dir)
             %check direction given by distance of the obstacles
             if heading2=='u'
                 if dir2=='l'
-                    w=-0.4;
+                    w=0.7;
                     v=0.2;
                 else
-                    w=0.4;
+                    w=-0.7;
                     v=0.2;
                 end
             else
                 if dir=='l'
-                    w=0.4;%minus is right, down is inverted
+                    w=-0.7;%minus is right, down is inverted
                     v=0.2;
                 else
-                    w=-0.4;
+                    w=0.7;
                     v=0.2;
                 end
             end
             GUI.robots.send_velocity(v,w,2);
+            [position2,orientation2]=GUI.odom_update(1);
+            pose2=[curent_pos_x2+position2(1) curent_pos_y2+position2(2) orientation2(1)];
             reactive2=false;
         end
         

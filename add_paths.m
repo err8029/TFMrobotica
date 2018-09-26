@@ -6,5 +6,7 @@ addpath('subscribers');
 addpath('aux_functions');
 %astar funs
 addpath('astar_fun');
+%fast marching funs
+addpath('astar_fun');
 end
 

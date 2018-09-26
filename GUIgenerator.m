@@ -17,6 +17,7 @@ classdef GUIgenerator < handle
         control_texts=[];
         error=0;
         warn_msg=[];
+        continue_msg=1;
     end
     methods (Access = public)
         function GUI = GUIgenerator()
@@ -311,8 +312,21 @@ classdef GUIgenerator < handle
              hold on;
              %read the csv, plot it and obtain the paths and execute navigation
              map=csvread('map/map4.csv');
-             map_and_nav(map,GUI);
-             map_and_nav(map,GUI);%simulates a 2nd task
+             map_and_nav(map,GUI);% first task            
+             while GUI.continue_msg==1
+                 if GUI.error==0%check if last task generated some error
+                 choice = questdlg('Would you like to continue?', ...
+                'Continue to next task', ...
+                'Yes','No','Yes');
+                     switch choice
+                         case 'No'  
+                            GUI.continue_msg=0;
+                         case 'Yes'
+                            GUI.continue_msg=1;
+                            map_and_nav(map,GUI);%simulates a 2nd task
+                     end   
+                 end
+             end
         end
         function stop(GUI,~,~)
             if GUI.error==1
