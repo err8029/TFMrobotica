@@ -65,8 +65,14 @@ Programa con matlab para poder teleoperar, planificar con dos turtlebots (con GU
    
 - <h3> Detector de turtlebots con SVM </h3>
    
-   Test image rank
+   - Test image rank
+   <p> 
+   </p>
+   
    <img src="https://github.com/err8029/TFMrobotica/blob/master/img/img_readme/linearSVM_test_rank.jpg" alt="alt text" width="500" height="400">
    
-   Accuracy of the test
+   - Accuracy of the test
+   <p>  
+   </p>
+   
    <img src="https://github.com/err8029/TFMrobotica/blob/master/img/img_readme/linearSVM_test.jpg" alt="alt text" width="500" height="400">
