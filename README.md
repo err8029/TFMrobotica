@@ -10,19 +10,23 @@ Hacer un sistema multirobot usando ROS y matlab que permita a dos turtlebots rea
 
    <img src="https://github.com/err8029/TFMrobotica/blob/master/img/img_readme/doing.png" alt="alt text" width="25" height="25">  Tener un state of the art (repo: https://github.com/err8029/TFM_stateOfTheArt)
 
-   <img src="https://github.com/err8029/TFMrobotica/blob/master/img/img_readme/doing.png" alt="alt text" width="25" height="25">  Acabar el metodo de deteccion de colisiones con otros robots
+   <img src="https://github.com/err8029/TFMrobotica/blob/master/img/img_readme/doing.png" alt="alt text" width="25" height="25">  Acabar el metodo de deteccion de colisiones con otros robots, usar CV
 
    <img src="https://github.com/err8029/TFMrobotica/blob/master/img/img_readme/no.png" alt="alt text" width="25" height="25">  Mejorar el planificador, en vez de A* usar RRT o fast marching
 
    <img src="https://github.com/err8029/TFMrobotica/blob/master/img/img_readme/no.png" alt="alt text" width="25" height="25">  Mejorar el tratamiento del mapa geometrico(transformada de hough)
 
-   <img src="https://github.com/err8029/TFMrobotica/blob/master/img/img_readme/doing.png" alt="alt text" width="25" height="25">  Implementar metodos de CV para deteccion del otro robot y elaboración de un mapa semantico
+   <img src="https://github.com/err8029/TFMrobotica/blob/master/img/img_readme/yes.png" alt="alt text" width="25" height="25">  Implementar metodos de CV para deteccion del otro robot
+   
+   <img src="https://github.com/err8029/TFMrobotica/blob/master/img/img_readme/no.png" alt="alt text" width="25" height="25"> Elaboración de un mapa semantico
 
    <img src="https://github.com/err8029/TFMrobotica/blob/master/img/img_readme/no.png" alt="alt text" width="25" height="25">  En vez de readCartesian() usar otra función para leer el laser. Encontrarla o implementarla
 
    <img src="https://github.com/err8029/TFMrobotica/blob/master/img/img_readme/no.png" alt="alt text" width="25" height="25">  Ver que partes se pueden pasar a c++ para implementación en los robots reales
 
    <img src="https://github.com/err8029/TFMrobotica/blob/master/img/img_readme/yes.png" alt="alt text" width="25" height="25">  Introducir objetos de mas complejidad en el mapa para analizar como los ven los robots
+   
+   <img src="https://github.com/err8029/TFMrobotica/blob/master/img/img_readme/yes.png" alt="alt text" width="25" height="25">  Mejorar el codigo, eliminando las variables globales y estructurandolo en clases y objetos
 
 - <h3> Cosas de más </h3>
 
