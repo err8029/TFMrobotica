@@ -77,6 +77,7 @@ classdef Robots < handle
         function laserData = read_laser(~,laserMsg)
         %readPose Extract the laser data in Cartesian coordinates
             laserData = readCartesian(laserMsg) * [0 1; -1 0];
+            %laserData = removeInvalidData(laserData,'RangeLimits',[0.3 3]);
         end
         function [distance,dir] = distance_extract(~,new_scan)
             dis=[];

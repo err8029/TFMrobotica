@@ -1,4 +1,12 @@
 function nav(GUI,optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xStart,yStart,xStart2,yStart2)
+    map = robotics.OccupancyGrid(14,13,20);
+
+    figureHandle = figure('Name', 'Map');
+    axesHandle = axes('Parent', figureHandle);
+    mapHandle = show(map, 'Parent', axesHandle);
+    title(axesHandle, 'OccupancyGrid: Update 0');
+
+
     %by default reactive mode is not activated
     reactive2=false;
     reactive=false;
@@ -46,6 +54,33 @@ function nav(GUI,optimal_path,optimal_path2,xTarget,yTarget,xTarget2,yTarget2,xS
         if GUI.enable_bts.enable_nav==true && gmap_c>GUI.robots.freq
             %occuancy grid for robot 1
             if reached1==false
+%                 % Get robot pose at the time of sensor reading.
+%                 pose = getTransform(tftree, 'map', 'robot_base', ROB.subs.scan1.Header.Stamp, 'Timeout', 2);
+% 
+%                 % Convert robot pose to 1x3 vector [x y yaw].
+%                 position = [pose.Transform.Translation.X, pose.Transform.Translation.Y];
+%                 orientation =  quat2eul([pose.Transform.Rotation.W, pose.Transform.Rotation.X, ...
+%                     pose.Transform.Rotation.Y, pose.Transform.Rotation.Z], 'ZYX');
+%                 robotPose = [position, orientation(1)];
+% 
+%                 % Extract the laser scan.
+%                 scan = lidarScan(scanMsg);
+%                 ranges = scan.Ranges;
+%                 ranges(isnan(ranges)) = sim.LaserSensor.MaxRange;
+%                 modScan = lidarScan(ranges, scan.Angles);
+%                 
+%                 % Insert the laser range observation in the map.
+%                 insertRay(map, robotPose, modScan, sim.LaserSensor.MaxRange);
+%                 
+%                 % Visualize the map after every 50th update.
+%                 if ~mod(updateCounter,50)
+%                     mapHandle.CData = occupancyMatrix(map);
+%                     title(axesHandle, ['OccupancyGrid: Update ' num2str(updateCounter)]);
+%                 end
+%                 % Update the counter and distance to goal.
+%                 updateCounter = updateCounter+1;
+
+    
                 laserMsg = receive(GUI.robots.subs.scan1,3);%recieve messages from the subscriber
                 laserdata=GUI.robots.read_laser(laserMsg);
                 [dis,dir]=GUI.robots.distance_extract(laserdata);

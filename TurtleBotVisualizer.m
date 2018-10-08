@@ -109,7 +109,8 @@ classdef TurtleBotVisualizer < handle
             
             % Plot the transformed laser data on the world map
             % Also keep a history of previous laser data handles (fixed-size FIFO)
-            laserDataHandle = plot(obj.AxesHandle,dataWorld(:,1), dataWorld(:,2), '*', 'MarkerSize',1,'Color','k');
+            laserDataHandle = plot(obj.AxesHandle,dataWorld(:,1), dataWorld(:,2), '*', 'MarkerSize',0.2,'Color','k');
+            
             addNewLaserDataHandle(obj, laserDataHandle);
         end
     end
